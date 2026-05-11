@@ -27,7 +27,15 @@
                         <div class="flex items-center space-x-4">
                             @if (Route::has('login'))
                                 @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition">Dashboard</a>
+                                 @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
+                                    <a href="{{ url('/admin/home') }}" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+                                      Dashboard
+                                     </a>
+                                @else
+                                     <a href="{{ url('/user/home') }}" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition">
+                                        Dashboard
+                                    </a>
+                                @endif
                                 @else
                                     <a href="{{ route('login') }}" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition">Log in</a>
                                     @if (Route::has('register'))

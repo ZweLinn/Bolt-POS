@@ -5,16 +5,35 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                 @auth
+                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                        <a href="{{ url('/admin/home') }}">
+                            <x-application-logo class="block h-9 w-auto" />
+                        </a>
+                         @else
+                        <a href="{{ url('/user/home') }}" >
                         <x-application-logo class="block h-9 w-auto" />
-                    </a>
+                          </a>
+                      @endif
+                @endauth
+                
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+
+                @auth
+                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                        <x-nav-link :href="route('adminHome')" :active="request()->routeIs('adminHome')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('userHome')" :active="request()->routeIs('userHome')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
+                @endauth
+                    
                 </div>
             </div>
 
@@ -67,9 +86,17 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+                @auth
+                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                        <x-nav-link :href="route('adminHome')" :active="request()->routeIs('adminHome')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('userHome')" :active="request()->routeIs('userHome')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
+                @endauth
         </div>
 
         <!-- Responsive Settings Options -->

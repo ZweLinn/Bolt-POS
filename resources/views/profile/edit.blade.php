@@ -29,15 +29,6 @@
                         </a>
                     </nav>
 
-                    <div class="mt-8 p-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-xl text-white overflow-hidden relative">
-                        <div class="relative z-10">
-                            <h3 class="font-bold text-lg mb-1">Bolt POS</h3>
-                            <p class="text-blue-100 text-xs mb-4">Version 1.0.4 Premium</p>
-                            <div class="h-1 w-12 bg-white/30 rounded-full mb-4"></div>
-                            <p class="text-sm font-medium leading-relaxed opacity-90">Manage your account details and security preferences.</p>
-                        </div>
-                        <i class="fas fa-bolt absolute -right-4 -bottom-4 text-8xl text-white/10 rotate-12"></i>
-                    </div>
                 </div>
 
                 <!-- Main Content Area -->
