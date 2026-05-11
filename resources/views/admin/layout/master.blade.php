@@ -140,8 +140,8 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                    <form action="" method="post">
-
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
                                         <input type="submit" class="btn btn-dark text-white w-100" value="Logout">
                                     </form>
                                 </span>
