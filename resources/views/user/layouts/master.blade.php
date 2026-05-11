@@ -74,8 +74,7 @@
                                 <span></span>
                             </a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="#" class="dropdown-item my-2">Edit Profile</a>
-                                <a href={{ route('profile.edit') }} class="dropdown-item my-2">Change Password</a>
+                                <a href={{ route('profile.edit') }} class="dropdown-item my-2">Profile</a>
                                 <a href="#" class="dropdown-item my-2">
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf

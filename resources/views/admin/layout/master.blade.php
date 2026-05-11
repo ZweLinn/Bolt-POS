@@ -185,12 +185,6 @@
                                     User List
                                 </a>
 
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item py-2" href={{ route('profile.edit') }}>
-                                    <i class="fa-solid fa-lock fa-sm fa-fw mr-3 text-slate-400"></i>
-                                    Change Password
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <div class="px-3 py-2">
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
