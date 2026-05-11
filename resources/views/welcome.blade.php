@@ -52,9 +52,15 @@
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition shadow-lg shadow-blue-200">
-                                Go to Dashboard
-                            </a>
+                            @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
+                                <a href="{{ url('/admin/home') }}" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                                    Go to Dashboard
+                                </a>
+                            @else
+                                <a href="{{ url('/user/home') }}" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                                    Go to Dashboard
+                                </a>
+                            @endif
                         @else
                             <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition shadow-lg shadow-blue-200">
                                 Get Started

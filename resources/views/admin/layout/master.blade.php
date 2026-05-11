@@ -122,9 +122,7 @@
                 <a class="nav-link" href=""><i class="fa-solid fa-shopping-cart"></i><span>Order Board </span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa-solid fa-user-lock"></i><span>Change Password </span></a>
-            </li>
+        
 
             <li class="nav-item mt-4 px-3">
                 <form action="{{ route('logout') }}" method="post">
@@ -168,7 +166,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow border-0 animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item py-2" href="">
+                                <a class="dropdown-item py-2" href={{ route('profile.edit') }}>
                                     <i class="fas fa-user fa-sm fa-fw mr-3 text-slate-400"></i>
                                     Profile
                                 </a>
@@ -188,7 +186,7 @@
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item py-2" href="">
+                                <a class="dropdown-item py-2" href={{ route('profile.edit') }}>
                                     <i class="fa-solid fa-lock fa-sm fa-fw mr-3 text-slate-400"></i>
                                     Change Password
                                 </a>
