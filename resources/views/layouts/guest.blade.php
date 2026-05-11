@@ -5,20 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name') === 'Laravel' ? 'POS System' : config('app.name') }}</title>
+        <title>{{ config('app.name') === 'Laravel' ? 'Bolt POS' : config('app.name') }}</title>
 
         <!-- Custom fonts for this template-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
         <!-- Custom styles for this template-->
         <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
         
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
         <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
             .bg-login-image {
                 background-image: url("{{ asset('user/img/banner-fruits.jpg') }}");
                 background-size: cover;
@@ -39,9 +44,20 @@
                 background-color: #1a1e22;
                 border-color: #e6e6e6;
             }
+            .btn-primary {
+                background-color: #2563eb !important;
+                border-color: #2563eb !important;
+            }
+            .btn-primary:hover {
+                background-color: #1d4ed8 !important;
+                border-color: #1d4ed8 !important;
+            }
+            .text-primary {
+                color: #2563eb !important;
+            }
         </style>
     </head>
-    <body class="bg-gradient-primary">
+    <body class="bg-slate-50">
         <div class="container">
             {{ $slot }}
         </div>
