@@ -154,6 +154,8 @@
                 <!-- End of Topbar -->
 
                 @yield('content')
+                @include('sweetalert::alert')
+
 
                 <!-- Bootstrap core JavaScript-->
                 <script src='{{ asset("admin/vendor/jquery/jquery.min.js") }}'></script>
