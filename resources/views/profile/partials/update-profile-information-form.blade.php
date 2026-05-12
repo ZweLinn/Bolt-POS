@@ -12,6 +12,16 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border-slate-300 focus:border-blue-500 focus:ring-blue-500 rounded-xl shadow-sm" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+        <div>
+            <x-input-label for="phone" :value="__('Phone')" class="text-slate-700 font-semibold" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full border-slate-300 focus:border-blue-500 focus:ring-blue-500 rounded-xl shadow-sm" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+        <div>
+            <x-input-label for="address" :value="__('Address')" class="text-slate-700 font-semibold" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full border-slate-300 focus:border-blue-500 focus:ring-blue-500 rounded-xl shadow-sm" :value="old('address', $user->address)" required autofocus autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+        </div>
 
         <div>
             <x-input-label for="email" :value="__('Email Address')" class="text-slate-700 font-semibold" />

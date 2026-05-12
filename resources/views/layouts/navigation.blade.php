@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                  @auth
-                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                    @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
                         <a href="{{ url('/admin/home') }}">
                             <x-application-logo class="block h-9 w-auto" />
                         </a>
@@ -23,7 +23,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
 
                 @auth
-                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                    @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
                         <x-nav-link :href="route('adminHome')" :active="request()->routeIs('adminHome')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
@@ -53,6 +53,17 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @auth
+                        @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
+                             <x-dropdown-link :href="route('adminHome')" :active="request()->routeIs('adminHome')">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                        @else
+                            <x-dropdown-link :href="route('userHome')" :active="request()->routeIs('userHome')">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                            @endif
+                        @endauth
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -87,7 +98,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
                 @auth
-                    @if(in_array(auth()->user()->role, ['admin', 'super admin']))
+                    @if(in_array(auth()->user()->role, ['admin', 'superadmin']))
                         <x-nav-link :href="route('adminHome')" :active="request()->routeIs('adminHome')">
                             {{ __('Dashboard') }}
                         </x-nav-link>

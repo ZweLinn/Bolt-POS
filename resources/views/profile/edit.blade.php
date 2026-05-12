@@ -4,9 +4,15 @@
             <h2 class="font-bold text-2xl text-slate-800 leading-tight">
                 {{ __('Account Settings') }}
             </h2>
+
             <div class="flex items-center space-x-2 text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full">
                 <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
-                <span>Active Profile: {{ Auth::user()->name }}</span>
+                <span>Role: {{ Auth::user()->role }}</span>
+            </div>
+            
+            <div class="flex items-center space-x-2 text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full">
+                <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+                    <span>Active Profile: {{ Auth::user()->name }}</span>
             </div>
         </div>
     </x-slot>
