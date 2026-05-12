@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,34 @@ class ProfileController extends Controller
     Alert::success('Profile Picture Updated', 'Your profile picture has been updated successfully!');
     return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
 }
+
+    /**
+     * Create Admin Account 
+     */
+    public function createAdminAccountPage(){
+        return view('admin.adminAccount.create');
+    }
+
+    public function createAdminAccount(Request $request){
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+            'role' => 'admin',
+        ]);
+        Alert::success('Admin Account Created', 'New admin account has been created successfully!');
+        return back();
+    }
+
     /**
      * Delete the user's account.
      */

@@ -121,6 +121,15 @@
             <li class="nav-item">
                 <a class="nav-link" href=""><i class="fa-solid fa-shopping-cart"></i><span>Order Board </span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ route('account#addAdmin') }}><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""><i class="fas fa-users  "></i><span>Admin List</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""><i class="fas fa-user-friends"></i><span>User List</span></a>
+            </li>
 
         
 

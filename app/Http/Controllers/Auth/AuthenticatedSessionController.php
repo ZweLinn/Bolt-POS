@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(Auth::user()->role == 'superadmin'){
+        if(Auth::user()->role == 'superadmin' || Auth::user()->role == 'admin'){
             return redirect()->intended('/admin/home');
         }else{
             return redirect()->intended('/user/home');
