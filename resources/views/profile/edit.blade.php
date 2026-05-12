@@ -72,6 +72,7 @@
                             </form>
                             <div class="max-w-2xl">
                                 @include('profile.partials.update-profile-information-form')
+                                @include('sweetalert::alert')
                             </div>
                         </div>
                     </div>

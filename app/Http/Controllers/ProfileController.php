@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -34,7 +35,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-
+        Alert::success('Profile Updated', 'Your profile has been updated successfully!');
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -65,6 +66,7 @@ class ProfileController extends Controller
         $user->save();
     }
 
+    Alert::success('Profile Picture Updated', 'Your profile picture has been updated successfully!');
     return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
 }
     /**
