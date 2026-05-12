@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserAccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +22,12 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
     Route::group(['prefix' => 'account'], function () {
         Route::get('add/newAdmin', [ProfileController::class, 'createAdminAccountPage'])->name('account#addAdmin');
         Route::post('add/newAdmin', [ProfileController::class, 'createAdminAccount'])->name('account#createAdmin');
+
+        Route::get('adminList', [AdminAccountController::class, 'adminList'])->middleware('normalAdmin')->name('account#adminList');
+        Route::get('userList', [UserAccountController::class, 'userAccountPage'])->middleware('normalAdmin')->name('account#userList');
     });
+
+
 
 
 });

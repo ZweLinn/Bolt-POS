@@ -125,10 +125,10 @@
                 <a class="nav-link" href={{ route('account#addAdmin') }}><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-users  "></i><span>Admin List</span></a>
+                <a class="nav-link" href={{ route('account#adminList') }}><i class="fas fa-users  "></i><span>Admin List</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-user-friends"></i><span>User List</span></a>
+                <a class="nav-link" href={{ route('account#userList') }}><i class="fas fa-user-friends"></i><span>User List</span></a>
             </li>
 
         
@@ -180,16 +180,16 @@
                                     Profile
                                 </a>
 
-                                <a class="dropdown-item py-2" href="">
+                                <a class="dropdown-item py-2" href={{ route('account#addAdmin') }}>
                                     <i class="fas fa-user-plus fa-sm fa-fw mr-3 text-slate-400"></i>
                                     Add New Admin Account
                                 </a>
-                                <a class="dropdown-item py-2" href="">
+                                <a class="dropdown-item py-2" href={{ route('account#adminList') }}>
                                     <i class="fas fa-users fa-sm fa-fw mr-3 text-slate-400"></i>
                                     Admin List
                                 </a>
 
-                                <a class="dropdown-item py-2" href="">
+                                <a class="dropdown-item py-2" href={{ route('account#userList') }}>
                                     <i class="fas fa-user-friends fa-sm fa-fw mr-3 text-slate-400"></i>
                                     User List
                                 </a>

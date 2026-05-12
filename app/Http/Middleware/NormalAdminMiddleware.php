@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
+
+class NormalAdminMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        
+       if(Auth::user()){
+        if ( Auth::user()->role !== 'admin') {
+            if($request->route()->getName() === 'register' || $request->route()->getName() === 'login'){
+                return back()->with('error', 'Only superadmin can access registration page.');
+            }
+            return $next($request);
+        }
+        return back();
+       }else{
+        return $next($request);
+        
+       }
+    }
+}
