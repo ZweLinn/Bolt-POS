@@ -24,6 +24,7 @@ class SocialLoginController extends Controller
         'email' => $user->email,
         'provider' => $provider,
         'provider_token' => $user->token,
+        'profile' => $user->avatar,
     ]);
  
     Auth::login($user);

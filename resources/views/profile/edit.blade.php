@@ -43,14 +43,33 @@
                     <div id="profile-info" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
                         <div class="p-6 sm:p-8">
                             <div class="mb-6 flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
-                                    <i class="fas fa-id-card text-xl"></i>
+                                <div class="w-24 h-24 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                                    @if (empty(Auth::user()->profile))
+                                        <img src="{{ asset('admin/img/undraw_profile.svg') }}" alt="Profile Image" class="w-full h-full object-cover rounded-xl">
+                                    @elseif (str_starts_with(Auth::user()->profile, 'http'))
+                                        {{-- Google OAuth full URL --}}
+                                        <img src="{{ Auth::user()->profile }}" alt="Profile Image" class="w-full h-full object-cover rounded-xl">
+                                    @else
+                                        {{-- Local upload relative path --}}
+                                        <img src="{{ asset('storage/' . Auth::user()->profile) }}" alt="Profile Image" class="w-full h-full object-cover rounded-xl">
+                                    @endif
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-slate-900">Profile Information</h3>
                                     <p class="text-sm text-slate-500">Update your account's public identity.</p>
                                 </div>
                             </div>
+
+                            <!-- Profile Picture Update Form -->
+                            <form action="{{ route('profile.updateProfilePicture') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PATCH')
+                                <input type="file" name="profile_picture" accept="image/*" class="mb-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition cursor-pointer" required>
+                                <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+                                <x-primary-button class="bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 rounded-xl px-6 py-2.5 shadow-lg shadow-blue-200 transition-all border-none">
+                                    <i class="fas fa-save mr-2"></i> {{ __('Save Changes') }}
+                                </x-primary-button>
+                            </form>
                             <div class="max-w-2xl">
                                 @include('profile.partials.update-profile-information-form')
                             </div>
