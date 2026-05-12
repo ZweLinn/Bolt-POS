@@ -18,7 +18,7 @@ class NormalAdminMiddleware
     {
         
        if(Auth::user()){
-        if ( Auth::user()->role !== 'admin') {
+        if ( Auth::user()->role === 'superadmin') {
             if($request->route()->getName() === 'register' || $request->route()->getName() === 'login'){
                 return back()->with('error', 'Only superadmin can access registration page.');
             }

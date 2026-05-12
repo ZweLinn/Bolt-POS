@@ -20,11 +20,13 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
     });
 
     Route::group(['prefix' => 'account'], function () {
-        Route::get('add/newAdmin', [ProfileController::class, 'createAdminAccountPage'])->name('account#addAdmin');
-        Route::post('add/newAdmin', [ProfileController::class, 'createAdminAccount'])->name('account#createAdmin');
+        Route::group(['middleware' => 'normalAdmin'], function () {
+            Route::get('add/newAdmin', [ProfileController::class, 'createAdminAccountPage'])->name('account#addAdmin');
+            Route::post('add/newAdmin', [ProfileController::class, 'createAdminAccount'])->name('account#createAdmin');
+            Route::get('adminList', [AdminAccountController::class, 'adminList'])->name('account#adminList');
+        });
 
-        Route::get('adminList', [AdminAccountController::class, 'adminList'])->middleware('normalAdmin')->name('account#adminList');
-        Route::get('userList', [UserAccountController::class, 'userAccountPage'])->middleware('normalAdmin')->name('account#userList');
+        Route::get('userList', [UserAccountController::class, 'userAccountPage'])->name('account#userList');
     });
 
 

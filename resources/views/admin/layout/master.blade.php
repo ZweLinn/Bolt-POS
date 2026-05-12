@@ -121,11 +121,13 @@
             <li class="nav-item">
                 <a class="nav-link" href=""><i class="fa-solid fa-shopping-cart"></i><span>Order Board </span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href={{ route('account#addAdmin') }}><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={{ route('account#adminList') }}><i class="fas fa-users  "></i><span>Admin List</span></a>
+            
+            @auth
+                @if (auth()->user()->role=== 'superadmin')
+                    <li class="nav-item"><a class="nav-link" href={{ route('account#addAdmin') }}><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href={{ route('account#adminList') }}><i class="fas fa-users  "></i><span>Admin List</span></a></li>
+                @endif
+            @endauth
             </li>
             <li class="nav-item">
                 <a class="nav-link" href={{ route('account#userList') }}><i class="fas fa-user-friends"></i><span>User List</span></a>
@@ -169,7 +171,15 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-3 d-none d-lg-inline text-slate-600 font-medium small">{{ Auth::user()->name ?? 'Admin User' }}</span>
                                 <div class="img-profile rounded-circle bg-slate-200 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-user text-slate-400"></i>
+                                     @if (empty(Auth::user()->profile))
+                                        <img src="{{ asset('admin/img/undraw_profile.svg') }}" alt="Profile Image" class="w-full h-full object-cover rounded-full">
+                                    @elseif (str_starts_with(Auth::user()->profile, 'http'))
+                                        {{-- Google OAuth full URL --}}
+                                        <img src="{{ Auth::user()->profile }}" alt="Profile Image" class="w-full h-full object-cover rounded-full">
+                                    @else
+                                        {{-- Local upload relative path --}}
+                                        <img src="{{ asset('storage/' . Auth::user()->profile) }}" alt="Profile Image" class="w-full h-full object-cover rounded-full">
+                                    @endif
                                 </div>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -180,14 +190,18 @@
                                     Profile
                                 </a>
 
-                                <a class="dropdown-item py-2" href={{ route('account#addAdmin') }}>
-                                    <i class="fas fa-user-plus fa-sm fa-fw mr-3 text-slate-400"></i>
-                                    Add New Admin Account
-                                </a>
-                                <a class="dropdown-item py-2" href={{ route('account#adminList') }}>
-                                    <i class="fas fa-users fa-sm fa-fw mr-3 text-slate-400"></i>
-                                    Admin List
-                                </a>
+                                @auth
+                                    @if (auth()->user()->role === 'superadmin')
+                                        <a class="dropdown-item py-2" href={{ route('account#addAdmin') }}>
+                                            <i class="fas fa-user-plus fa-sm fa-fw mr-3 text-slate-400"></i>
+                                            Add Admin Account
+                                        </a>
+                                        <a class="dropdown-item py-2" href={{ route('account#adminList') }}>
+                                            <i class="fas fa-users fa-sm fa-fw mr-3 text-slate-400"></i>
+                                            Admin List
+                                        </a>
+                                    @endif
+                                @endauth
 
                                 <a class="dropdown-item py-2" href={{ route('account#userList') }}>
                                     <i class="fas fa-user-friends fa-sm fa-fw mr-3 text-slate-400"></i>
