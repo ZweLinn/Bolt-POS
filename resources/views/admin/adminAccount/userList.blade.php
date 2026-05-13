@@ -29,6 +29,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                             <th>Created Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -38,10 +40,41 @@
                                             <tr>
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone }}</td>
                                                 <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-sm btn-outline-warning shadow-sm" title="Edit"><i class="fas fa-edit"></i></a>
-                                                    <a href="" class="btn btn-sm btn-outline-danger shadow-sm" title="Delete"><i class="fas fa-trash"></i></a>
+                                                <x-danger-button x-data=""
+                                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $user->id }}')"
+                                                    class="btn btn-sm btn-outline-danger shadow-sm" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </x-danger-button>
+
+                                                <x-modal name="confirm-user-deletion-{{ $user->id }}" focusable>
+                                                    <form method="post" action="{{ route('account#deleteUser', $user->id) }}"
+                                                        class="p-6">
+                                                        @csrf
+                                                        @method('delete')
+
+                                                        <h2 class="text-lg font-medium text-gray-900">
+                                                            {{ __('Are you sure you want to delete this user?') }}
+                                                        </h2>
+
+                                                        <p class="mt-1 text-sm text-gray-600">
+                                                            {{ __('Once this account is deleted, all of its resources and data will be permanently deleted. (User: ') . $user->name . ')' }}
+                                                        </p>
+
+                                                        <div class="mt-6 flex justify-end">
+                                                            <x-secondary-button x-on:click="$dispatch('close')">
+                                                                {{ __('Cancel') }}
+                                                            </x-secondary-button>
+
+                                                            <x-danger-button class="ms-3">
+                                                                {{ __('Delete User') }}
+                                                            </x-danger-button>
+                                                        </div>
+                                                    </form>
+                                                </x-modal>
                                                 </td>
                                             </tr>
                                         @endforeach

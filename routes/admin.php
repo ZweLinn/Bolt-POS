@@ -24,9 +24,11 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
             Route::get('add/newAdmin', [ProfileController::class, 'createAdminAccountPage'])->name('account#addAdmin');
             Route::post('add/newAdmin', [ProfileController::class, 'createAdminAccount'])->name('account#createAdmin');
             Route::get('adminList', [AdminAccountController::class, 'adminList'])->name('account#adminList');
+            Route::delete('deleteAdmin/{id}', [AdminAccountController::class, 'deleteAdmin'])->name('account#deleteAdmin');
         });
 
         Route::get('userList', [UserAccountController::class, 'userAccountPage'])->name('account#userList');
+        Route::delete('deleteUser/{id}', [UserAccountController::class, 'deleteUser'])->name('account#deleteUser');
     });
 
 

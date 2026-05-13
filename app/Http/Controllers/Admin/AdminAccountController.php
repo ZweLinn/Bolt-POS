@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminAccountController extends Controller
 {
@@ -18,5 +19,13 @@ class AdminAccountController extends Controller
         
         return view('admin.adminAccount.adminList', compact('adminList'));
         
+    }
+
+    // Delete Admin Account
+    public function deleteAdmin($id)
+    {
+        User::where('id', $id)->delete();
+        Alert::success('Admin Account Deleted', 'The admin account has been deleted successfully!');
+        return back()->with(['deleteSuccess' => 'Admin Account Deleted Successfully!']);
     }
 }
