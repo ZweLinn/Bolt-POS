@@ -111,7 +111,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-credit-card"></i><span>Payment Method </span></a>
+                <a class="nav-link" href={{ route('payment#list') }}><i class="fa-solid fa-credit-card"></i><span>Payment Method </span></a>
             </li>
 
             <li class="nav-item">

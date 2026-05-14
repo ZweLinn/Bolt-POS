@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserAccountController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,15 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
 
         Route::get('userList', [UserAccountController::class, 'userAccountPage'])->name('account#userList');
         Route::delete('deleteUser/{id}', [UserAccountController::class, 'deleteUser'])->name('account#deleteUser');
+
+        Route::group(['prefix' => 'payment'], function () {
+            Route::get('/', [PaymentController::class, 'paymentList'])->name('payment#list');
+            Route::post('/create', [PaymentController::class, 'createPayment'])->name('payment#create');
+            Route::get('/delete/{id}', [PaymentController::class, 'deletePayment'])->name('payment#delete');
+            Route::get('/edit/{id}', [PaymentController::class, 'editPayment'])->name('payment#edit');
+            Route::post('/update', [PaymentController::class, 'updatePayment'])->name('payment#update');
+
+        });
     });
 
 
