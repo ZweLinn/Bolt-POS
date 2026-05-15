@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserAccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,11 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
             Route::post('/update', [PaymentController::class, 'updatePayment'])->name('payment#update');
 
         });
+    });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/create', [ProductController::class, 'productCreatePage'])->name('product#createPage');
+        Route::post('/create', [ProductController::class, 'createProduct'])->name('product#create');
     });
 
 

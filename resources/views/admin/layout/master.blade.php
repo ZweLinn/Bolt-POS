@@ -102,7 +102,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa-solid fa-plus-circle"></i><span>Add Products </span></a>
+                <a class="nav-link" href="{{ route('product#createPage') }}"><i class="fa-solid fa-plus-circle"></i><span>Add Products </span></a>
             </li>
 
             <li class="nav-item">
@@ -111,7 +111,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href={{ route('payment#list') }}><i class="fa-solid fa-credit-card"></i><span>Payment Method </span></a>
+                <a class="nav-link" href="{{ route('payment#list') }}"><i class="fa-solid fa-credit-card"></i><span>Payment Method </span></a>
             </li>
 
             <li class="nav-item">
@@ -124,13 +124,13 @@
             
             @auth
                 @if (auth()->user()->role=== 'superadmin')
-                    <li class="nav-item"><a class="nav-link" href={{ route('account#addAdmin') }}><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href={{ route('account#adminList') }}><i class="fas fa-users  "></i><span>Admin List</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('account#addAdmin') }}"><i class="fas fa-user-plus  "></i><span>Add New Admin Account</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('account#adminList') }}"><i class="fas fa-users  "></i><span>Admin List</span></a></li>
                 @endif
             @endauth
             </li>
             <li class="nav-item">
-                <a class="nav-link" href={{ route('account#userList') }}><i class="fas fa-user-friends"></i><span>User List</span></a>
+                <a class="nav-link" href="{{ route('account#userList') }}"><i class="fas fa-user-friends"></i><span>User List</span></a>
             </li>
 
         
@@ -185,25 +185,25 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow border-0 animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item py-2" href={{ route('profile.edit') }}>
+                                <a class="dropdown-item py-2" href="{{ route('profile.edit') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-3 text-slate-400"></i>
                                     Profile
                                 </a>
 
                                 @auth
                                     @if (auth()->user()->role === 'superadmin')
-                                        <a class="dropdown-item py-2" href={{ route('account#addAdmin') }}>
+                                        <a class="dropdown-item py-2" href="{{ route('account#addAdmin') }}">
                                             <i class="fas fa-user-plus fa-sm fa-fw mr-3 text-slate-400"></i>
                                             Add Admin Account
                                         </a>
-                                        <a class="dropdown-item py-2" href={{ route('account#adminList') }}>
+                                        <a class="dropdown-item py-2" href="{{ route('account#adminList') }}">
                                             <i class="fas fa-users fa-sm fa-fw mr-3 text-slate-400"></i>
                                             Admin List
                                         </a>
                                     @endif
                                 @endauth
 
-                                <a class="dropdown-item py-2" href={{ route('account#userList') }}>
+                                <a class="dropdown-item py-2" href="{{ route('account#userList') }}">
                                     <i class="fas fa-user-friends fa-sm fa-fw mr-3 text-slate-400"></i>
                                     User List
                                 </a>
@@ -263,6 +263,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src='{{ asset("admin/js/sb-admin-2.min.js") }}'></script>
+
+    @yield('script')
 
 </body>
 
