@@ -77,17 +77,29 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="image" class="font-weight-bold text-dark">Product Image</label>
-                                <div class="mb-3">
-                                    <img src="{{ asset('admin/img/undraw_posting_photo.svg') }}" id="output" class="img-thumbnail shadow-sm" style="width: 200px; height: 200px; object-fit: cover;">
+                                <label class="font-weight-bold text-dark">Product Image</label>
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="position-relative d-inline-block">
+                                            <img src="{{ asset('admin/img/undraw_posting_photo.svg') }}" id="output"
+                                                class="img-thumbnail shadow-sm border"
+                                                style="width: 220px; height: 220px; object-fit: cover;">
+                                            <label for="image" class="position-absolute bottom-0 end-0 mb-1 me-1 btn btn-sm btn-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                style="width: 36px; height: 36px; cursor: pointer;">
+                                                <i class="fas fa-camera" style="font-size: 14px;"></i>
+                                            </label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="custom-file text-start">
+                                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="image" onchange="loadFile(event)">
+                                                <label class="custom-file-label" for="image">Choose file...</label>
+                                            </div>
+                                            @error('image')
+                                                <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="image" onchange="loadFile(event)">
-                                    <label class="custom-file-label" for="image">Choose file...</label>
-                                </div>
-                                @error('image')
-                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
-                                @enderror
                             </div>
 
                             <div class="mt-4 text-right">
