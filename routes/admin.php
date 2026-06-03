@@ -43,8 +43,10 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth' , 'admin']], functio
     });
 
     Route::group(['prefix' => 'product'], function () {
+        Route::get('/', [ProductController::class, 'productList'])->name('product#list');
         Route::get('/create', [ProductController::class, 'productCreatePage'])->name('product#createPage');
         Route::post('/create', [ProductController::class, 'createProduct'])->name('product#create');
+        Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('product#delete');
     });
 
 

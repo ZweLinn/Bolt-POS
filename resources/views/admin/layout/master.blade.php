@@ -106,7 +106,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa-solid fa-list-ul"></i><span>Product List </span></a>
+                <a class="nav-link" href="{{ route('product#list') }}"><i class="fa-solid fa-list-ul"></i><span>Product List </span></a>
             </li>
 
 
